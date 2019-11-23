@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Header from './components/Header';
+import Form from './components/Form';
+import Table from './components/Table';
 
 function App() {
+  const [showTable, setShowTable] = React.useState(false);
+  const [data, setData] = React.useState([]);
+  const [customerSort, setCustomerSort] = React.useState(
+    false
+  );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container mt-5">
+      <Header />
+      <Form
+        setShowTable={setShowTable}
+        setData={setData}
+        setCustomerSort={setCustomerSort}
+      />
+      {showTable ? (
+        <Table
+          data={data}
+          customerSort={customerSort}
+          setData={setData}
+          setCustomerSort={setCustomerSort}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
